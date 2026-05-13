@@ -49,20 +49,20 @@
 
         .letter-text { font-size: 13.5px !important; line-height: 1.8 !important; text-align: center; color: #eee; word-break: keep-all; }
         
-        /* 인증서 줄 간격 및 단어 끊김 방지 */
+        /* 인증서 줄 간격 고정 및 단어 끊김 방지 */
         .cert-text { text-align: left; line-height: 2.2 !important; font-size: 15px !important; border-top: 1px solid var(--border); padding-top: 20px; word-break: keep-all; }
         
         .tight-text { display: block; width: 100%; text-align: center; white-space: nowrap; }
     </style>
 </head>
-<body>
+<body onclick="forcePlayMusic()">
 
     <div class="bg-glow" style="top: 10%; left: 10%;"></div>
     <div class="bg-glow" style="bottom: 10%; right: 10%;"></div>
     
-    <button class="music-btn" onclick="toggleMusic()"><i id="music-icon" class="fa-solid fa-music"></i></button>
-    <audio id="bgm" loop>
-        <!-- 잔잔하고 러블리한 피아노 연주곡 주소로 교체 -->
+    <button class="music-btn" onclick="toggleMusic(event)"><i id="music-icon" class="fa-solid fa-music"></i></button>
+    <audio id="bgm" loop preload="auto">
+        <!-- 안정적인 러블리 피아노 곡 (Pixabay CDN) -->
         <source src="https://cdn.pixabay.com/audio/2022/01/20/audio_d0c6ff1101.mp3" type="audio/mpeg">
     </audio>
 
@@ -149,7 +149,7 @@
             <div class="cert-text">
                 당신은 지난 <span style="color:var(--gold); font-weight:bold;">2,033일</span>간 사랑과 헌신으로<br>
                 우리 가족을 지켜주었기에,<br>
-                <!-- 줄맞춤 수정: 강제 줄바꿈을 통해 '지원'이 잘리지 않도록 고정 -->
+                <!-- [수정] 강제 줄바꿈으로 '지원' 단어 끊김 완벽 방지 -->
                 본 남편은 귀하에게<br>
                 <span style="color:var(--gold); font-weight:bold;">평생 무상 보증 및 전폭적 지원</span>을 약속합니다.
             </div>
@@ -163,7 +163,16 @@
         let curr = 1; const total = 6;
         const bgm = document.getElementById('bgm');
 
-        function toggleMusic() {
+        function forcePlayMusic() {
+            if(bgm.paused) {
+                bgm.play().then(() => {
+                    document.getElementById('music-icon').className = 'fa-solid fa-pause';
+                }).catch(e => console.log("Waiting for more interaction"));
+            }
+        }
+
+        function toggleMusic(e) {
+            e.stopPropagation();
             if(bgm.paused) { bgm.play(); document.getElementById('music-icon').className = 'fa-solid fa-pause'; }
             else { bgm.pause(); document.getElementById('music-icon').className = 'fa-solid fa-music'; }
         }
@@ -175,7 +184,11 @@
             else {
                 document.getElementById('timer').innerText = "GO";
                 clearInterval(timer);
-                setTimeout(() => { move(1); document.getElementById('nav-area').style.display = 'flex'; }, 600);
+                setTimeout(() => { 
+                    move(1); 
+                    document.getElementById('nav-area').style.display = 'flex'; 
+                    forcePlayMusic(); // GO가 나올 때 재생 시도
+                }, 600);
             }
         }, 1000);
 
