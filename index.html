@@ -7,21 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* STREAMING_CHUNK:Configuring core styles... */
         :root { --gold: #d4af37; --bright-gold: #f1d592; --dark-bg: #0a0a0a; --glass: rgba(255, 255, 255, 0.05); --border: rgba(212, 175, 55, 0.3); }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--dark-bg); color: #fff; overflow: hidden; position: fixed; width: 100%; height: 100%; }
 
-        /* 배경 효과 */
         .bg-glow { position: fixed; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%); border-radius: 50%; z-index: -1; filter: blur(50px); }
-        
-        /* 페이지 시스템 */
         .page { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 15px; transition: 0.5s ease; opacity: 0; }
         .page.active { display: flex; opacity: 1; }
 
-        /* 카드 디자인 */
-        .glass-card { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid var(--border); border-radius: 25px; padding: 25px 20px; width: 100%; max-width: 450px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative; max-height: 82vh; display: flex; flex-direction: column; }
+        /* STREAMING_CHUNK:Styling the glass cards... */
+        .glass-card { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid var(--border); border-radius: 25px; padding: 25px 15px; width: 100%; max-width: 450px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative; max-height: 82vh; display: flex; flex-direction: column; }
         
-        /* 편지 내용 스크롤 및 겹침 방지 */
         .scroll-content { overflow-y: auto; padding-bottom: 20px; flex: 1; scrollbar-width: none; -ms-overflow-style: none; }
         .scroll-content::-webkit-scrollbar { display: none; }
 
@@ -31,35 +28,37 @@
             50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 20px rgba(241, 213, 146, 0.8); }
         }
 
-        /* 그래프 (21'~26') */
+        /* STREAMING_CHUNK:Setting up graph elements... */
         .chart-container { width: 100%; height: 180px; display: flex; align-items: flex-end; gap: 8px; margin: 15px 0; padding: 0 10px; border-bottom: 2px solid var(--border); }
         .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
         .bar { width: 100%; background: linear-gradient(to top, var(--gold), #fff); border-radius: 3px 3px 0 0; transition: height 1.2s ease-out; height: 0; }
         .year-label { font-size: 11px; color: var(--gold); font-weight: bold; }
 
-        /* 사진 영역 */
+        /* STREAMING_CHUNK:Styling the photo area... */
         .photo-area { width: 100%; height: 240px; border: 1px solid var(--border); border-radius: 15px; overflow: hidden; margin-bottom: 15px; background: #000; flex-shrink: 0; }
         .photo-area img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* 룰렛 디자인 */
+        /* STREAMING_CHUNK:Configuring the roulette... */
         .wheel-wrap { position: relative; width: 250px; height: 250px; margin: 0 auto 10px; flex-shrink: 0; }
         #canvas { width: 100%; height: 100%; border-radius: 50%; border: 5px solid var(--gold); transform: rotate(-90deg); }
         .pin { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 22px solid var(--gold); z-index: 10; }
         #win-txt { color: var(--gold); font-size: 20px; font-weight: bold; margin-top: 10px; min-height: 28px; }
         
-        /* [수정] 룰렛 안내 한 줄 고정 */
         #alert-text { color: #ff4d4d; font-size: 12px; font-weight: bold; opacity: 0; transition: 0.5s; white-space: nowrap; margin-top: 5px; }
 
-        /* 내비게이션 */
+        /* STREAMING_CHUNK:Defining navigation and UI buttons... */
         .nav-bar { position: fixed; bottom: 20px; display: flex; gap: 15px; z-index: 1000; width: 100%; justify-content: center; padding: 0 20px; }
         .btn { flex: 1; max-width: 130px; background: rgba(0,0,0,0.7); border: 1px solid var(--gold); color: var(--gold); padding: 12px 0; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 12px; backdrop-filter: blur(5px); }
         
         .music-btn { position: fixed; top: 15px; right: 15px; font-size: 22px; color: var(--gold); background: none; border: none; z-index: 1001; padding: 10px; }
         #timer { font-size: 100px; font-family: 'Playfair Display'; color: var(--gold); }
 
-        /* 텍스트 최적화 */
-        .letter-text { font-size: 14px !important; line-height: 1.8 !important; text-align: center; color: #eee; }
+        /* STREAMING_CHUNK:Optimizing typography for mobile... */
+        .letter-text { font-size: 13.5px !important; line-height: 1.8 !important; text-align: center; color: #eee; word-break: keep-all; }
         .cert-text { text-align: left; line-height: 2.2 !important; font-size: 15px !important; border-top: 1px solid var(--border); padding-top: 20px; }
+        
+        /* 텍스트 줄맞춤 강제 최적화 */
+        .tight-text { display: block; width: 100%; text-align: center; white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -67,8 +66,10 @@
     <div class="bg-glow" style="top: 10%; left: 10%;"></div>
     <div class="bg-glow" style="bottom: 10%; right: 10%;"></div>
     
+    <!-- STREAMING_CHUNK:Initializing audio control... -->
     <button class="music-btn" onclick="toggleMusic()"><i id="music-icon" class="fa-solid fa-music"></i></button>
     <audio id="bgm" loop>
+        <!-- 러블리한 피아노 곡으로 교체 -->
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
     </audio>
 
@@ -79,7 +80,7 @@
 
     <div class="page active" id="page-1"><div id="timer">3</div></div>
 
-    <!-- PAGE 2: 그래프 -->
+    <!-- STREAMING_CHUNK:Rendering Graph Page... -->
     <div class="page" id="page-2">
         <div class="glass-card">
             <h1 class="glow-title">압도적 가치의 행복 우량주</h1>
@@ -91,15 +92,16 @@
                 <div class="bar-wrap"><div class="bar" data-h="85%"></div><div class="year-label">25'</div></div>
                 <div class="bar-wrap"><div class="bar" style="background: linear-gradient(to top, var(--gold), #fff);" data-h="115%"></div><div class="year-label">26'</div></div>
             </div>
-            <p style="font-size: 15px; line-height: 1.6;">
+            <!-- 줄맞춤 수정: 한 줄로 깔끔하게 정렬 -->
+            <p style="font-size: 14.5px; line-height: 1.7;">
                 당신은 지난 <span style="color:var(--gold); font-weight:bold;">2,033일</span>간 우리 가족의<br>
-                행복 지수를 <span style="color:var(--gold); font-weight:bold;">연평균 365%</span> 이상 성장시켰습니다.<br>
+                <span class="tight-text">행복 지수를 <span style="color:var(--gold); font-weight:bold;">연평균 365%</span> 이상 성장시켰습니다.</span>
                 내 인생 가장 완벽한 투자는 당신입니다.
             </p>
         </div>
     </div>
 
-    <!-- PAGE 3: 로드맵 -->
+    <!-- STREAMING_CHUNK:Rendering Roadmap Page... -->
     <div class="page" id="page-3">
         <div class="glass-card">
             <h2 class="glow-title">Happiness Roadmap for 2026</h2>
@@ -120,14 +122,15 @@
         </div>
     </div>
 
-    <!-- PAGE 4: 편지 -->
+    <!-- STREAMING_CHUNK:Rendering Letter Page... -->
     <div class="page" id="page-4">
         <div class="glass-card">
             <h2 class="glow-title">Beautiful Asset</h2>
             <div class="scroll-content">
                 <div class="photo-area"><img src="image_48bf37.jpg"></div>
                 <div class="letter-text">
-                    "38세, 당신의 가장 아름다운 순간을 영원히 기록합니다."<br>
+                    <!-- 줄맞춤 수정: span으로 감싸 줄바꿈 방지 -->
+                    <span class="tight-text">"38세, 당신의 가장 아름다운 순간을 영원히 기록합니다."</span><br>
                     사랑하는 여보, 38번째 생일을 정말 축하해.<br>
                     매일 육아와 일상에 고생이 많은데,<br>
                     오늘 하루만큼은 근심 걱정 다 잊고<br>
@@ -139,7 +142,7 @@
         </div>
     </div>
 
-    <!-- PAGE 5: 룰렛 -->
+    <!-- STREAMING_CHUNK:Rendering Roulette Page... -->
     <div class="page" id="page-5">
         <div class="glass-card">
             <h2 class="glow-title">Benefit Win!</h2>
@@ -153,7 +156,7 @@
         </div>
     </div>
 
-    <!-- PAGE 6: 인증서 -->
+    <!-- STREAMING_CHUNK:Rendering Certificate Page... -->
     <div class="page" id="page-6">
         <div class="glass-card" style="border: 2px solid var(--gold); background: rgba(15,15,15,0.95);">
             <h2 class="glow-title">Certificate</h2>
@@ -167,6 +170,7 @@
         </div>
     </div>
 
+    <!-- STREAMING_CHUNK:Initializing Scripts... -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
         let curr = 1; const total = 6;
