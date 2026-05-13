@@ -18,45 +18,47 @@
         .page { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 15px; transition: 0.5s ease; opacity: 0; }
         .page.active { display: flex; opacity: 1; }
 
-        /* 카드 디자인 및 겹침 방지 */
-        .glass-card { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid var(--border); border-radius: 25px; padding: 25px 20px; width: 100%; max-width: 450px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative; max-height: 80vh; display: flex; flex-direction: column; }
+        /* 카드 디자인 */
+        .glass-card { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid var(--border); border-radius: 25px; padding: 25px 20px; width: 100%; max-width: 450px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative; max-height: 82vh; display: flex; flex-direction: column; }
         
-        /* [수정] 편지 내용 스크롤 및 여백 */
+        /* 편지 내용 스크롤 및 겹침 방지 */
         .scroll-content { overflow-y: auto; padding-bottom: 20px; flex: 1; scrollbar-width: none; -ms-overflow-style: none; }
         .scroll-content::-webkit-scrollbar { display: none; }
 
-        .glow-title { font-family: 'Playfair Display', serif; color: var(--gold); animation: popGlow 3s infinite ease-in-out; margin-bottom: 15px; }
+        .glow-title { font-family: 'Playfair Display', serif; color: var(--gold); animation: popGlow 3s infinite ease-in-out; margin-bottom: 15px; font-size: 22px !important; }
         @keyframes popGlow {
             0%, 100% { opacity: 0.7; transform: scale(0.98); text-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
             50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 20px rgba(241, 213, 146, 0.8); }
         }
 
-        /* [수정] 그래프: 확실한 계단식 상승 */
+        /* 그래프 (21'~26') */
         .chart-container { width: 100%; height: 180px; display: flex; align-items: flex-end; gap: 8px; margin: 15px 0; padding: 0 10px; border-bottom: 2px solid var(--border); }
         .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
         .bar { width: 100%; background: linear-gradient(to top, var(--gold), #fff); border-radius: 3px 3px 0 0; transition: height 1.2s ease-out; height: 0; }
         .year-label { font-size: 11px; color: var(--gold); font-weight: bold; }
 
-        /* [수정] 사진 꽉 차게 */
-        .photo-area { width: 100%; min-height: 250px; border: 1px solid var(--border); border-radius: 15px; overflow: hidden; margin-bottom: 15px; background: #000; flex-shrink: 0; }
+        /* 사진 영역 */
+        .photo-area { width: 100%; height: 240px; border: 1px solid var(--border); border-radius: 15px; overflow: hidden; margin-bottom: 15px; background: #000; flex-shrink: 0; }
         .photo-area img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* [수정] 룰렛 스타일 및 한 줄 텍스트 */
-        .wheel-wrap { position: relative; width: 250px; height: 250px; margin: 0 auto 10px; }
+        /* 룰렛 디자인 */
+        .wheel-wrap { position: relative; width: 250px; height: 250px; margin: 0 auto 10px; flex-shrink: 0; }
         #canvas { width: 100%; height: 100%; border-radius: 50%; border: 5px solid var(--gold); transform: rotate(-90deg); }
         .pin { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 22px solid var(--gold); z-index: 10; }
         #win-txt { color: var(--gold); font-size: 20px; font-weight: bold; margin-top: 10px; min-height: 28px; }
-        #alert-text { color: #ff4d4d; font-size: 13px; font-weight: bold; opacity: 0; transition: 0.5s; white-space: nowrap; margin-top: 5px; }
+        
+        /* [수정] 룰렛 안내 한 줄 고정 */
+        #alert-text { color: #ff4d4d; font-size: 12px; font-weight: bold; opacity: 0; transition: 0.5s; white-space: nowrap; margin-top: 5px; }
 
-        /* [수정] 내비게이션 버튼 (카드와 겹침 방지 위해 하단 고정) */
-        .nav-bar { position: fixed; bottom: 20px; display: flex; gap: 10px; z-index: 100; width: 100%; justify-content: center; padding: 0 20px; }
+        /* 내비게이션 */
+        .nav-bar { position: fixed; bottom: 20px; display: flex; gap: 15px; z-index: 1000; width: 100%; justify-content: center; padding: 0 20px; }
         .btn { flex: 1; max-width: 130px; background: rgba(0,0,0,0.7); border: 1px solid var(--gold); color: var(--gold); padding: 12px 0; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 12px; backdrop-filter: blur(5px); }
         
-        .music-btn { position: fixed; top: 15px; right: 15px; font-size: 22px; color: var(--gold); background: none; border: none; z-index: 1000; padding: 10px; }
+        .music-btn { position: fixed; top: 15px; right: 15px; font-size: 22px; color: var(--gold); background: none; border: none; z-index: 1001; padding: 10px; }
         #timer { font-size: 100px; font-family: 'Playfair Display'; color: var(--gold); }
 
-        /* [수정] 텍스트 및 줄 간격 최적화 */
-        .letter-text { font-size: 14px !important; line-height: 1.8 !important; text-align: center; }
+        /* 텍스트 최적화 */
+        .letter-text { font-size: 14px !important; line-height: 1.8 !important; text-align: center; color: #eee; }
         .cert-text { text-align: left; line-height: 2.2 !important; font-size: 15px !important; border-top: 1px solid var(--border); padding-top: 20px; }
     </style>
 </head>
@@ -65,7 +67,6 @@
     <div class="bg-glow" style="top: 10%; left: 10%;"></div>
     <div class="bg-glow" style="bottom: 10%; right: 10%;"></div>
     
-    <!-- [수정] 러블리한 피아노 음악 -->
     <button class="music-btn" onclick="toggleMusic()"><i id="music-icon" class="fa-solid fa-music"></i></button>
     <audio id="bgm" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
@@ -76,13 +77,12 @@
         <button id="next-btn" class="btn" onclick="move(1)">NEXT <i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
-    <!-- PAGE 1: 카운트다운 -->
     <div class="page active" id="page-1"><div id="timer">3</div></div>
 
     <!-- PAGE 2: 그래프 -->
     <div class="page" id="page-2">
         <div class="glass-card">
-            <h1 class="glow-title">행복 지수 리포트</h1>
+            <h1 class="glow-title">압도적 가치의 행복 우량주</h1>
             <div class="chart-container">
                 <div class="bar-wrap"><div class="bar" data-h="20%"></div><div class="year-label">21'</div></div>
                 <div class="bar-wrap"><div class="bar" data-h="35%"></div><div class="year-label">22'</div></div>
@@ -92,9 +92,9 @@
                 <div class="bar-wrap"><div class="bar" style="background: linear-gradient(to top, var(--gold), #fff);" data-h="115%"></div><div class="year-label">26'</div></div>
             </div>
             <p style="font-size: 15px; line-height: 1.6;">
-                지난 <span style="color:var(--gold); font-weight:bold;">2,033일</span>간 우리 가족의<br>
-                행복 수치는 역대 최고치를 경신했습니다.<br>
-                내 인생 가장 완벽한 자산은 당신입니다.
+                당신은 지난 <span style="color:var(--gold); font-weight:bold;">2,033일</span>간 우리 가족의<br>
+                행복 지수를 <span style="color:var(--gold); font-weight:bold;">연평균 365%</span> 이상 성장시켰습니다.<br>
+                내 인생 가장 완벽한 투자는 당신입니다.
             </p>
         </div>
     </div>
@@ -102,7 +102,7 @@
     <!-- PAGE 3: 로드맵 -->
     <div class="page" id="page-3">
         <div class="glass-card">
-            <h2 class="glow-title">Happiness Roadmap</h2>
+            <h2 class="glow-title">Happiness Roadmap for 2026</h2>
             <div style="display: grid; gap: 12px; text-align: left;">
                 <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--border); display: flex; align-items: center; gap: 15px;">
                     <i class="fa-solid fa-ban-smoking" style="font-size: 20px; color: var(--gold);"></i>
@@ -120,7 +120,7 @@
         </div>
     </div>
 
-    <!-- PAGE 4: 편지 (겹침 방지 및 스크롤 추가) -->
+    <!-- PAGE 4: 편지 -->
     <div class="page" id="page-4">
         <div class="glass-card">
             <h2 class="glow-title">Beautiful Asset</h2>
@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    <!-- PAGE 5: 룰렛 (명칭 수정 및 한 줄 처리) -->
+    <!-- PAGE 5: 룰렛 -->
     <div class="page" id="page-5">
         <div class="glass-card">
             <h2 class="glow-title">Benefit Win!</h2>
@@ -149,12 +149,11 @@
             </div>
             <button class="btn" id="spin" style="width: 100%; max-width: none; margin-top: 10px;">SPIN START</button>
             <div id="win-txt"></div>
-            <!-- [수정] 한 줄로 표기 -->
             <div id="alert-text">당첨을 축하합니다! 본 혜택은 금일 내 소진 해야 합니다 ! 🥂</div>
         </div>
     </div>
 
-    <!-- PAGE 6: 인증서 (줄 간격 최적화) -->
+    <!-- PAGE 6: 인증서 -->
     <div class="page" id="page-6">
         <div class="glass-card" style="border: 2px solid var(--gold); background: rgba(15,15,15,0.95);">
             <h2 class="glow-title">Certificate</h2>
@@ -163,7 +162,7 @@
                 우리 가족을 지켜주었기에,<br>
                 본 남편은 귀하에게 <span style="color:var(--gold); font-weight:bold;">평생 무상 보증 및 전폭적 지원</span>을 약속합니다.
             </div>
-            <div style="width: 90px; height: 90px; margin: 30px auto; border: 3px double var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-weight: bold; transform: rotate(-15deg); font-size: 16px;">인증 완료</div>
+            <div style="width: 90px; height: 90px; margin: 25px auto; border: 3px double var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-weight: bold; transform: rotate(-15deg); font-size: 16px;">인증 완료</div>
             <p style="font-size: 13px; color: var(--gold);">2026. 05. 25. 남편 이종훈 드림</p>
         </div>
     </div>
@@ -205,7 +204,7 @@
         }
 
         const cvs = document.getElementById("canvas"); const ctx = cvs.getContext("2d");
-        const items = ["현금 20만", "현금 30만", "현금 50만", "명품사용권", "무조건 YES", "자유여행권(1박2일)"];
+        const items = ["현금 10만", "현금 20만", "현금 30만", "명품사용권", "무조건 YES", "자유여행권(1박2일)"];
         const cols = ["#111", "#d4af37", "#111", "#b8860b", "#111", "#d4af37"];
 
         function draw() {
