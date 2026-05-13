@@ -23,15 +23,13 @@
             50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 20px rgba(241, 213, 146, 0.8); }
         }
 
-        .editable { cursor: pointer; transition: 0.3s; padding: 2px 5px; }
-
-        /* [그래프 모바일 최적화] */
+        /* [그래프 모바일 최적화] 2026년 확실한 우상향 */
         .chart-container { width: 100%; height: 200px; display: flex; align-items: flex-end; gap: 8px; margin: 20px 0; padding: 0 10px; border-bottom: 2px solid var(--border); }
         .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
         .bar { width: 100%; background: linear-gradient(to top, var(--gold), #fff); border-radius: 3px 3px 0 0; transition: height 1.2s ease-out; height: 0; }
         .year-label { font-size: 11px; color: var(--gold); font-weight: bold; }
 
-        /* [사진 모바일 최적화] */
+        /* [사진 모바일 최적화] 꽉 차게 */
         .photo-area { width: 100%; height: 300px; border: 1px solid var(--border); border-radius: 15px; overflow: hidden; margin-bottom: 15px; background: #000; }
         .photo-area img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -40,7 +38,7 @@
         #canvas { width: 100%; height: 100%; border-radius: 50%; border: 5px solid var(--gold); transform: rotate(-90deg); }
         .pin { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 22px solid var(--gold); z-index: 10; }
         #win-txt { color: var(--gold); font-size: 20px; font-weight: bold; margin-top: 15px; min-height: 30px; }
-        #alert-text { color: #ff4d4d; font-size: 14px; font-weight: bold; opacity: 0; transition: 0.5s; }
+        #alert-text { color: #ff4d4d; font-size: 13px; font-weight: bold; opacity: 0; transition: 0.5s; line-height: 1.5; }
 
         /* [내비게이션 모바일 최적화] */
         .nav-bar { position: fixed; bottom: 30px; display: flex; gap: 15px; z-index: 100; width: 100%; justify-content: center; padding: 0 20px; }
@@ -49,10 +47,9 @@
         .music-btn { position: fixed; top: 15px; right: 15px; font-size: 22px; color: var(--gold); background: none; border: none; z-index: 1000; }
         #timer { font-size: 100px; font-family: 'Playfair Display'; color: var(--gold); }
 
-        /* 폰트 크기 조절 */
         h1 { font-size: 24px !important; }
         h2 { font-size: 22px !important; }
-        p, .editable { font-size: 14px !important; line-height: 1.6 !important; }
+        p, .letter-text { font-size: 14px !important; line-height: 1.6 !important; }
     </style>
 </head>
 <body>
@@ -72,16 +69,16 @@
 
     <div class="page" id="page-2">
         <div class="glass-card">
-            <h1 class="glow-title editable" contenteditable="true">압도적 가치의 행복 우량주</h1>
+            <h1 class="glow-title">압도적 가치의 행복 우량주</h1>
             <div class="chart-container">
                 <div class="bar-wrap"><div class="bar" data-h="20%"></div><div class="year-label">21'</div></div>
                 <div class="bar-wrap"><div class="bar" data-h="35%"></div><div class="year-label">22'</div></div>
                 <div class="bar-wrap"><div class="bar" data-h="50%"></div><div class="year-label">23'</div></div>
                 <div class="bar-wrap"><div class="bar" data-h="65%"></div><div class="year-label">24'</div></div>
-                <div class="bar-wrap"><div class="bar" data-h="80%"></div><div class="year-label">25'</div></div>
-                <div class="bar-wrap"><div class="bar" style="background: linear-gradient(to top, var(--gold), #fff);" data-h="110%"></div><div class="year-label">26'</div></div>
+                <div class="bar-wrap"><div class="bar" data-h="85%"></div><div class="year-label">25'</div></div>
+                <div class="bar-wrap"><div class="bar" style="background: linear-gradient(to top, var(--gold), #fff);" data-h="115%"></div><div class="year-label">26'</div></div>
             </div>
-            <p class="editable" contenteditable="true">
+            <p>
                 당신은 지난 <span style="color:var(--gold); font-weight:bold;">2033일</span>간 우리 가족의<br>
                 행복 지수를 <span style="color:var(--gold); font-weight:bold;">연평균 365%</span> 이상 성장시켰습니다.<br>
                 내 인생 가장 완벽한 투자는 당신입니다.
@@ -91,36 +88,43 @@
 
     <div class="page" id="page-3">
         <div class="glass-card">
-            <h2 class="glow-title editable" contenteditable="true" style="margin-bottom: 20px;">Roadmap for 2026</h2>
+            <h2 class="glow-title" style="margin-bottom: 20px;">Roadmap for 2026</h2>
             <div style="display: grid; gap: 12px; text-align: left;">
                 <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--border); display: flex; align-items: center; gap: 15px;">
                     <i class="fa-solid fa-ban-smoking" style="font-size: 20px; color: var(--gold);"></i>
-                    <div class="editable" contenteditable="true" style="font-size: 13px !important;"><strong>프로젝트 : 금연</strong><br>아내가 원하는 금연 오늘부터 시작!</div>
+                    <div style="font-size: 13px !important;"><strong>프로젝트 : 금연</strong><br>아내가 원하는 금연 오늘부터 시작!</div>
                 </div>
                 <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--border); display: flex; align-items: center; gap: 15px;">
                     <i class="fa-solid fa-hand-holding-heart" style="font-size: 20px; color: var(--gold);"></i>
-                    <div class="editable" contenteditable="true" style="font-size: 13px !important;"><strong>프로젝트 : 부부싸움</strong><br>부부싸움 연 3회 이하로 줄이기!</div>
+                    <div style="font-size: 13px !important;"><strong>프로젝트 : 부부싸움</strong><br>부부싸움 연 3회 이하로 줄이기!</div>
                 </div>
                 <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--border); display: flex; align-items: center; gap: 15px;">
                     <i class="fa-solid fa-plane-up" style="font-size: 20px; color: var(--gold);"></i>
-                    <div class="editable" contenteditable="true" style="font-size: 13px !important;"><strong>프로젝트 : 여행</strong><br>가족과 함께 연 3회 이상 여행!</div>
+                    <div style="font-size: 13px !important;"><strong>프로젝트 : 여행</strong><br>가족과 함께 연 3회 이상 여행!</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- [수정] PAGE 4: 편지 내용 (image_e6a1a5.png 반영) -->
     <div class="page" id="page-4">
         <div class="glass-card">
-            <h2 class="glow-title editable" contenteditable="true" style="margin-bottom: 15px;">Beautiful Asset</h2>
-            <div class="photo-area"><img id="viewImg" src="image_48bf37.jpg"></div>
-            <div class="editable" contenteditable="true" style="text-align: center;">
-                "38세, 당신의 가장 아름다운 순간"<br>
-                사랑하는 여보, 38번째 생일 축하해.<br>
-                항상 내 곁을 지켜줘서 고맙고 사랑해!
+            <h2 class="glow-title" style="margin-bottom: 15px;">Beautiful Asset</h2>
+            <div class="photo-area"><img src="image_48bf37.jpg"></div>
+            <div class="letter-text" style="text-align: center;">
+                "38세, 당신의 가장 아름다운 순간을 영원히 기록합니다."<br>
+                사랑하는 여보,<br>
+                38번째 생일을 정말 축하해.<br>
+                매일 육아와 일상에 고생이 많은데,<br>
+                오늘 하루만큼은 근심 걱정 다 잊고<br>
+                제일 행복한 주인공이 됐으면 좋겠어.<br>
+                부족한 남편이지만 항상 내 곁을 지켜주고<br>
+                믿어줘서 고맙고 사랑해!
             </div>
         </div>
     </div>
 
+    <!-- [수정] PAGE 5: 룰렛 (image_e65004.png 반영) -->
     <div class="page" id="page-5">
         <div class="glass-card">
             <h2 class="glow-title" style="margin-bottom: 20px;">Benefit Win!</h2>
@@ -130,7 +134,8 @@
             </div>
             <button class="btn" id="spin" style="width: 100%; max-width: none;">SPIN START</button>
             <div id="win-txt"></div>
-            <div id="alert-text">오늘 안에 사용해야 합니다! 🥂</div>
+            <!-- 요청하신 안내 문구 수정 -->
+            <div id="alert-text">당첨을 축하합니다! 본 혜택은 금일 내 소진 해야 합니다 ! 🥂</div>
         </div>
     </div>
 
@@ -138,7 +143,7 @@
         <div class="glass-card" style="border: 2px solid var(--gold); background: rgba(15,15,15,0.95);">
             <h2 class="glow-title" style="margin-bottom: 10px;">Certificate</h2>
             <div style="text-align: left; line-height: 2; font-size: 14px; border-top: 1px solid var(--border); padding-top: 15px;">
-                위 사람은 지난 <span style="color:var(--gold); font-weight:bold;">2,033일</span>간 사랑과 헌신으로<br>
+                당신은 지난 <span style="color:var(--gold); font-weight:bold;">2,033일</span>간 사랑과 헌신으로<br>
                 우리 가족을 지켜주었기에,<br>
                 본 남편은 귀하에게 <span style="color:var(--gold); font-weight:bold;">평생 무상 보증 및 전폭적 지원</span>을 약속합니다.
             </div>
@@ -202,6 +207,8 @@
 
         document.getElementById('spin').onclick = function() {
             this.disabled = true;
+            document.getElementById('alert-text').style.opacity = '0';
+            document.getElementById('win-txt').innerText = "";
             const target = 3600 + Math.random() * 3600;
             const start = performance.now();
             function frame(time) {
